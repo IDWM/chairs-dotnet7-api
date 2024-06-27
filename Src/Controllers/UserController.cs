@@ -52,7 +52,6 @@ namespace project_dotnet7_api.Src.Controllers
         /// <returns>A list of genders.</returns>
         /// <response code="200">Returns a list of genders.</response>
         [HttpGet("genders")]
-        [Authorize]
         public ActionResult<IEnumerable<Gender>> GetGenders()
         {
             var valor = _service.GetGenders().Result;
