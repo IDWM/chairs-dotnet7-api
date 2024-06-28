@@ -69,5 +69,11 @@ namespace project_dotnet7_api.Src.Services.Implements
             var mappedPurchases = purchases.Select(p => _mapper.Map<PurchaseInfoDto>(p)).ToList();
             return mappedPurchases;
         }
+
+        public IEnumerable<PurchaseUserDto> MapAllPurchases(IEnumerable<Purchase> purchases)
+        {
+            var mappedPurchases = purchases.Select(p => _mapper.Map<PurchaseUserDto>(p)).ToList();
+            return mappedPurchases;
+        }
     }
 }

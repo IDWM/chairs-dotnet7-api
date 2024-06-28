@@ -22,10 +22,11 @@ namespace project_dotnet7_api.Src.Services.Implements
             _productRepository = productRepository;
             _mapperService = mapperService;
         }
-        public async Task<IEnumerable<Purchase>> GetPurchases()
+        public async Task<IEnumerable<PurchaseUserDto>> GetPurchases()
         {
             var purchases = await _purchaseRepository.GetPurchases();
-            return purchases;
+            var mappedPurchases = _mapperService.MapAllPurchases(purchases);
+            return mappedPurchases;
         }
 
         public async Task<IEnumerable<PurchaseInfoDto>> GetPurchasesByUser(int userId)
@@ -39,10 +40,11 @@ namespace project_dotnet7_api.Src.Services.Implements
             return mappedPurchases;
         }
 
-        public async Task<IEnumerable<Purchase>> SearchPurchases(string query)
+        public async Task<IEnumerable<PurchaseUserDto>> SearchPurchases(string query)
         {
             var purchases = await _purchaseRepository.SearchPurchases(query);
-            return purchases;
+            var mappedPurchases = _mapperService.MapAllPurchases(purchases);
+            return mappedPurchases;
         }
 
         public async Task<PurchaseInfoDto> MakePurchase(PurchaseDto purchaseDto)

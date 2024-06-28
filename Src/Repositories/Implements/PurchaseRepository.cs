@@ -21,6 +21,8 @@ namespace project_dotnet7_api.Src.Repositories.Implements
         public async Task<IEnumerable<Purchase>> GetPurchases()
         {
             var purchases = await _context.Purchases.Include(p => p.User)
+                                                    .Include(p => p.User.Gender)
+                                                    .Include(p => p.User.Role)                        
                                                     .ToListAsync();
             return purchases;
         }
@@ -43,6 +45,8 @@ namespace project_dotnet7_api.Src.Repositories.Implements
                                                     || p.User.Name.Contains(query)
                                                     )
                                                     .Include(p => p.User)
+                                                    .Include(p => p.User.Gender)
+                                                    .Include(p => p.User.Role)   
                                                     .ToListAsync();
             return purchases;
         }

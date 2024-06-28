@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using project_dotnet7_api.Src.DTO.Purchase;
 using project_dotnet7_api.Src.DTO.User;
 using project_dotnet7_api.Src.Models;
 using project_dotnet7_api.Src.Services.Interfaces;
@@ -68,7 +69,7 @@ namespace project_dotnet7_api.Src.Controllers
         /// <response code="401">If the user is not authorized.</response>
         [HttpGet("{id}/purchases")]
         [Authorize(Roles = "Usuario")]
-        public async Task<ActionResult<IEnumerable<Purchase>>> GetPurchasesByUser(int id)
+        public async Task<ActionResult<IEnumerable<PurchaseInfoDto>>> GetPurchasesByUser(int id)
         {
             try{
                 var idClaim = User.Claims.FirstOrDefault(claim => claim.Type == "Id");
@@ -91,7 +92,7 @@ namespace project_dotnet7_api.Src.Controllers
         /// <response code="200">Returns a list of all purchases.</response>        
         [HttpGet("purchases")]
         [Authorize(Roles = "Admin")]
-        public ActionResult<IEnumerable<Purchase>> GetPurchases()
+        public ActionResult<IEnumerable<PurchaseUserDto>> GetPurchases()
         {
             var valor = _purchaseService.GetPurchases().Result;
             return Ok(valor);
@@ -105,7 +106,7 @@ namespace project_dotnet7_api.Src.Controllers
         /// <response code="200">Returns a list of matching purchases.</response>
         [HttpGet("purchases/search")]
         [Authorize(Roles = "Admin")]
-        public ActionResult<IEnumerable<Purchase>> SearchPurchases([FromQuery] string query)
+        public ActionResult<IEnumerable<PurchaseUserDto>> SearchPurchases([FromQuery] string query)
         {
             var valor = _purchaseService.SearchPurchases(query).Result;
             return Ok(valor);

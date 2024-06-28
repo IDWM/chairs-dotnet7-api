@@ -9,9 +9,7 @@ namespace project_dotnet7_api.Src.DTO.User
 {
     public class RegisterUserDto
     {
-        [Required(ErrorMessage = "El Rut es obligatorio.")]
-        [RegularExpression(@"^\d{7,8}-[0-9kK]", ErrorMessage = "El Rut no tiene un formato válido.")]
-        [RutValidation(ErrorMessage = "El Rut no es válido.")]
+        [RutValidation]
         public string Rut { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El Nombre es obligatorio.")]

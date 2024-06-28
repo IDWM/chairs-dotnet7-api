@@ -23,6 +23,8 @@ namespace project_dotnet7_api.Src.Services.Interfaces
 
         public PurchaseInfoDto PurchaseToPurchaseInfoDto(Purchase purchase);
 
-        public IEnumerable<PurchaseInfoDto> MapPurchases(IEnumerable<Purchase> purchases);        
+        public IEnumerable<PurchaseInfoDto> MapPurchases(IEnumerable<Purchase> purchases);
+
+        public IEnumerable<PurchaseUserDto> MapAllPurchases(IEnumerable<Purchase> purchases);          
     }
 }

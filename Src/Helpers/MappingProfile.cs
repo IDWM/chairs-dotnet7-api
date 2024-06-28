@@ -21,6 +21,7 @@ namespace project_dotnet7_api.Src.Helpers
             CreateMap<AddProductDto, Product>();
             CreateMap<EditProductDto, EditProductInfoDto>();
             CreateMap<Purchase, PurchaseInfoDto>();
+            CreateMap<Purchase, PurchaseUserDto>();
         }       
     }
 }
